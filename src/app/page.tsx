@@ -1,101 +1,130 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { FilterSection } from "@/components/filter-section";
+import { FieldSelector } from "@/components/field-selector";
+import { SortSection } from "@/components/sort-section";
+import {
+  FilterOptions,
+  Font,
+  FontsData,
+  SelectedFields,
+  SortOption,
+} from "../lib/types";
+import { fetchGoogleFonts } from "./actions";
+import {
+  filterFonts,
+  sortFonts,
+  filterFields,
+  downloadJson,
+} from "@/lib/utils";
+import { Download, Loader2 } from "lucide-react";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+export default function Page() {
+  const [fonts, setFonts] = useState<Font[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [filters, setFilters] = useState<FilterOptions>({});
+  const [sortOption, setSortOption] = useState<SortOption>({
+    field: "family",
+    direction: "asc",
+  });
+  const [selectedFields, setSelectedFields] = useState<SelectedFields>({
+    family: true,
+    category: true,
+    variants: true,
+    subsets: true,
+    version: false,
+    lastModified: false,
+    files: false,
+    kind: false,
+  });
+
+  // Derived values
+  const categories = Array.from(new Set(fonts.map((font) => font.category)));
+  const subsets = Array.from(new Set(fonts.flatMap((font) => font.subsets)));
+  const variants = Array.from(new Set(fonts.flatMap((font) => font.variants)));
+
+  const filteredFonts = sortFonts(filterFonts(fonts, filters), sortOption);
+  const finalData = filterFields(filteredFonts, selectedFields);
+
+  useEffect(() => {
+    async function loadFonts() {
+      try {
+        const data = await fetchGoogleFonts();
+        setFonts(data.items);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load fonts");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadFonts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-lg font-semibold text-destructive">Error</h2>
+          <p>{error}</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto py-8 space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">Google Fonts Explorer</h1>
+        <div className="flex items-center gap-4">
+          <FilterSection
+            categories={categories}
+            subsets={subsets}
+            variants={variants}
+            filters={filters}
+            onFilterChange={setFilters}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <SortSection sortOption={sortOption} onSortChange={setSortOption} />
+          <FieldSelector
+            selectedFields={selectedFields}
+            onFieldChange={(field) =>
+              setSelectedFields((prev) => ({
+                ...prev,
+                [field]: !prev[field],
+              }))
+            }
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <Button
+            onClick={() => downloadJson(finalData, "google-fonts.json")}
+            className="flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Download JSON
+          </Button>
+        </div>
+      </div>
+
+      <div className="p-4 border rounded-lg bg-card">
+        <h2 className="text-lg font-semibold mb-4">Preview</h2>
+        <pre className="p-4 bg-muted rounded-lg overflow-auto max-h-[500px]">
+          {JSON.stringify(finalData, null, 2)}
+        </pre>
+      </div>
+
+      <div className="text-sm text-muted-foreground">
+        Showing {filteredFonts.length} of {fonts.length} fonts
+      </div>
     </div>
   );
 }
