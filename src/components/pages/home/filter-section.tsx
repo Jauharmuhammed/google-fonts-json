@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FilterOptions } from "@/lib/types"
-import { Combobox } from "./ui/combobox"
+import { Combobox } from "../../ui/combobox"
 
 interface FilterSectionProps {
   categories: string[]

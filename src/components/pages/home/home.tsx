@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FilterSection } from "@/components/filter-section";
-import { FieldSelector } from "@/components/field-selector";
-import { SortSection } from "@/components/sort-section";
+
 import {
   FilterOptions,
   Font,
@@ -20,7 +18,10 @@ import {
   downloadJson,
 } from "@/lib/utils";
 import { Download } from "lucide-react";
-import { Loader } from "../ui/loader";
+import { Loader } from "../../ui/loader";
+import { FilterSection } from "./filter-section";
+import { SortSection } from "./sort-section";
+import { FieldSelector } from "./field-selector";
 
 export default function Home() {
   const [fonts, setFonts] = useState<Font[]>([]);
@@ -85,10 +86,10 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto py-8 space-y-6">
+    <div className="container h-svh flex flex-col mx-auto py-8 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Google Fonts Explorer</h1>
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <FilterSection
             categories={categories}
             subsets={subsets}
@@ -113,10 +114,10 @@ export default function Home() {
             <Download className="h-4 w-4" />
             Download JSON
           </Button>
-        </div>
+        </div> */}
       </div>
 
-      <div className="p-4 border rounded-lg bg-card">
+      <div className="flex-1 p-4 border rounded-lg bg-card">
         <h2 className="text-lg font-semibold mb-4">Preview</h2>
         <pre className="p-4 bg-muted rounded-lg overflow-auto max-h-[500px]">
           {JSON.stringify(finalData, null, 2)}
