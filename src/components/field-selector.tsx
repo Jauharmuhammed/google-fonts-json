@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CheckSquare, ChevronsUpDown, Square } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -37,13 +37,9 @@ export function FieldSelector({
           <DropdownMenuCheckboxItem
             key={field}
             checked={isSelected}
+            onSelect={(e) => e.preventDefault()}
             onCheckedChange={() => onFieldChange(field as keyof SelectedFields)}
           >
-            {isSelected ? (
-              <CheckSquare className="mr-2 h-4 w-4" />
-            ) : (
-              <Square className="mr-2 h-4 w-4" />
-            )}
             {field}
           </DropdownMenuCheckboxItem>
         ))}
