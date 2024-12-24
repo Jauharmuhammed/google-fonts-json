@@ -16,6 +16,7 @@ import {
   sortFonts,
   filterFields,
   downloadJson,
+  formatFileSize,
 } from "@/lib/utils";
 import { Download } from "lucide-react";
 import { Loader } from "../../ui/loader";
@@ -53,6 +54,11 @@ export default function Home() {
 
   const filteredFonts = sortFonts(filterFonts(fonts, filters), sortOption);
   const finalData = filterFields(filteredFonts, selectedFields);
+
+  // Calculate JSON size with proper formatting
+  const jsonString = JSON.stringify(finalData, null, 2); // Use same formatting as download
+  const byteSize = new Blob([jsonString]).size;
+  const formattedSize = formatFileSize(byteSize);
 
   useEffect(() => {
     async function loadFonts() {
@@ -133,8 +139,14 @@ export default function Home() {
         <JsonPreview data={finalData} />
       </div>
 
-      <div className="text-sm text-muted-foreground">
-        Showing {filteredFonts.length} of {fonts.length} fonts
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          Showing {filteredFonts.length} of {fonts.length} fonts
+        </p>
+        <p className="text-sm text-muted-foreground">
+          JSON Size ≈ {byteSize.toLocaleString(navigator.language)} bytes (
+          {formattedSize} on disk)
+        </p>
       </div>
     </div>
   );

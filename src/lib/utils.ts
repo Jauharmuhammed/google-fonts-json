@@ -55,7 +55,7 @@ export function filterFields(
     const filteredFont: Partial<Font> = {};
     Object.entries(selectedFields).forEach(([field, isSelected]) => {
       if (isSelected) {
-        filteredFont[field as keyof Font] = font[field as keyof Font];
+        filteredFont[field as keyof Font] = font[field as keyof Font] as any;
       }
     });
     return filteredFont;
@@ -74,4 +74,16 @@ export function downloadJson(data: any, filename: string) {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+}
+
+export function formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 KB';
+  
+  const kb = bytes / 1000;
+  if (kb < 1024) {
+    return `${kb.toFixed(1)} KB`;
+  }
+  
+  const mb = kb / 1000;
+  return `${mb.toFixed(1)} MB`;
 }
