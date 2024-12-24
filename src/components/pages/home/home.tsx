@@ -22,6 +22,8 @@ import { Loader } from "../../ui/loader";
 import { FilterSection } from "./filter-section";
 import { SortSection } from "./sort-section";
 import { FieldSelector } from "./field-selector";
+import JsonPreview from "./json-preview";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   const [fonts, setFonts] = useState<Font[]>([]);
@@ -38,10 +40,10 @@ export default function Home() {
     category: true,
     variants: true,
     subsets: true,
-    version: false,
-    lastModified: false,
-    files: false,
-    kind: false,
+    version: true,
+    lastModified: true,
+    files: true,
+    kind: true,
   });
 
   // Derived values
@@ -86,17 +88,33 @@ export default function Home() {
   }
 
   return (
-    <div className="container h-svh flex flex-col mx-auto py-8 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Google Fonts Explorer</h1>
-        {/* <div className="flex items-center gap-4">
-          <FilterSection
-            categories={categories}
-            subsets={subsets}
-            variants={variants}
-            filters={filters}
-            onFilterChange={setFilters}
-          />
+    <div className="container h-svh flex flex-col overflow-y-clip mx-auto pb-4 pt-2 space-y-4">
+      <Card>
+        <CardContent className="flex items-center justify-between p-2 rounded">
+          <h1 className="text-xl font-bold ms-2 font-mono">
+            Google Fonts JSON
+          </h1>
+          <div className="flex items-center gap-4">
+            <Button
+              onClick={() => downloadJson(finalData, "google-fonts.json")}
+              className="flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Download
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex items-center gap-4 justify-between">
+        <FilterSection
+          categories={categories}
+          subsets={subsets}
+          variants={variants}
+          filters={filters}
+          onFilterChange={setFilters}
+        />
+        <div className="flex items-center gap-4">
           <SortSection sortOption={sortOption} onSortChange={setSortOption} />
           <FieldSelector
             selectedFields={selectedFields}
@@ -107,21 +125,12 @@ export default function Home() {
               }))
             }
           />
-          <Button
-            onClick={() => downloadJson(finalData, "google-fonts.json")}
-            className="flex items-center gap-2"
-          >
-            <Download className="h-4 w-4" />
-            Download JSON
-          </Button>
-        </div> */}
+        </div>
       </div>
 
-      <div className="flex-1 p-4 border rounded-lg bg-card">
+      <div className="flex-1 flex flex-col overflow-hidden p-4 border rounded-lg bg-card">
         <h2 className="text-lg font-semibold mb-4">Preview</h2>
-        <pre className="p-4 bg-muted rounded-lg overflow-auto max-h-[500px]">
-          {JSON.stringify(finalData, null, 2)}
-        </pre>
+        <JsonPreview data={finalData} />
       </div>
 
       <div className="text-sm text-muted-foreground">
