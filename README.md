@@ -1,22 +1,65 @@
-# Google Fonts JSON Viewer
+<div align="center">
+  <a href="https://github.com/jauharmuhammed/google-fonts-json">
+    <img src="assets/logo.png" alt="Logo" width="80" height="80" style="border-radius: 50%;">
+  </a>
 
-A modern web application for viewing and exploring the Google Fonts JSON file in a clean, organized interface.
+  <h1 align="center">Google Fonts JSON Viewer</h1>
 
-![Google Fonts JSON Viewer Screenshot](assets/screenshots/preview.jpeg)
+  <p align="center">
+    A modern web application for viewing and downloading the Google Fonts JSON file in a clean, organized interface
+    <br />
+    <a href="https://github.com/jauharmuhammed/google-fonts-json"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://google-fonts-json.vercel.app">View Demo</a>
+    ·
+    <a href="https://github.com/jauharmuhammed/google-fonts-json/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/jauharmuhammed/google-fonts-json/issues">Request Feature</a>
+  </p>
+</div>
 
-## Description
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#current-features">Current Features</a></li>
+        <li><a href="#planned-features">Planned Features</a></li>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-Google Fonts JSON Viewer is a specialized tool built with Next.js that provides an intuitive interface for browsing and analyzing the Google Fonts JSON data structure. It helps developers and designers explore font families, variants, and related metadata in a user-friendly format.
+## About The Project
+
+<p align="center">
+  <img src="assets/screenshot.jpeg" alt="Project Screenshot" width="100%">
+</p>
+
+Google Fonts JSON Viewer is a specialized tool that provides an intuitive interface for browsing and analyzing the Google Fonts JSON data structure. It helps developers and designers explore and download font families, variants, and related metadata in a user-friendly format.
 
 ### Current Features
 
-- 🔍 Interactive JSON preview with expandable/collapsible sections
-- 🎨 Dark/Light theme support
-- ⚡ Fast and responsive interface
-- 🔤 Alphabetical sorting
-- 📥 Download functionality
-- 🎯 Category and subset filtering
-- 🔄 Reset view options
+- Interactive JSON preview with expandable/collapsible sections
+- Download functionality (JSON)
+- Search fonts by Font Family name
+- Sorting (Alphabetical, Popularity, Style, Trending)
+- Category, variant and subset filtering
+- Dark/Light theme support
 
 ### Planned Features
 
@@ -30,12 +73,17 @@ Google Fonts JSON Viewer is a specialized tool built with Next.js that provides 
 
    - Select multiple font families
    - Bulk download selected items
-   - Compare font properties
 
 3. **Export Options**
    - CSV format export
-   - YAML format export
-   - Custom JSON structure export
+
+### Built With
+
+- [Next.js 14](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Shadcn/UI](https://ui.shadcn.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## Getting Started
 
@@ -109,4 +157,4 @@ Project Link: [https://github.com/jauharmuhammed/google-fonts-json](https://gith
 
 ---
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by Jauhar Muhammed
