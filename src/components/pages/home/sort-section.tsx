@@ -8,13 +8,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Skeleton } from "@/components/ui/skeleton";
 import { GoogleFontSort } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 interface SortSectionProps {
   value: GoogleFontSort;
   onChange: (value: GoogleFontSort) => void;
   isLoading?: boolean;
+  className?: string;
 }
 
 const sortOptions: { value: GoogleFontSort; label: string }[] = [
@@ -29,10 +30,11 @@ export function SortSection({
   value,
   onChange,
   isLoading = false,
+  className,
 }: SortSectionProps) {
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className={cn("min-w-[180px]", className)}>
         <SelectValue placeholder="Sort by" />
         {isLoading && <Loader className="ms-auto opacity-50" />}
       </SelectTrigger>

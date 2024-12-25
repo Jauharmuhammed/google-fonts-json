@@ -18,12 +18,13 @@ export default function Footer({ totalData, data, filteredData }: Props) {
 
   return (
     <div className="flex items-center justify-between">
-      <p className="text-sm text-muted-foreground">
+      <p className="text-xs md:text-sm text-muted-foreground">
         Showing {filteredData.length} of {totalData.length} fonts
       </p>
-      <p className="text-sm text-muted-foreground">
-        JSON Size ≈{" "}
-        {byteSize.toLocaleString(typeof window !== 'undefined' ? window.navigator?.language : "en-US")}{" "}
+      <p className="text-xs md:text-sm text-muted-foreground">
+        {byteSize.toLocaleString(
+          typeof window !== "undefined" ? window.navigator?.language : "en-US"
+        )}{" "}
         bytes ({formattedSize} on disk)
       </p>
     </div>

@@ -13,26 +13,30 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SelectedFields } from "@/lib/types";
 import { toSentenceCase } from "@/lib/utils";
-
+import { cn } from "@/lib/utils";
 interface FieldSelectorProps {
   selectedFields: SelectedFields;
   onFieldChange: (field: keyof SelectedFields) => void;
+  className?: string;
+  width?: string;
 }
 
 export function FieldSelector({
   selectedFields,
   onFieldChange,
+  className,
+  width = "w-full",
 }: FieldSelectorProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className={cn(width, className)}>
           <Settings2 className="size-4" />
           View
           <ChevronsUpDown className="ml-auto size-4 shrink-0 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
+      <DropdownMenuContent align="end" className={cn("min-w-48", width)}>
         <DropdownMenuLabel>Toggle Fields</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {Object.entries(selectedFields).map(([field, isSelected]) => (

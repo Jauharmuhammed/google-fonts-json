@@ -24,9 +24,9 @@ function Preview({ data }: Props) {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden p-4 pt-2 border rounded-lg bg-card">
+    <div className="flex-1 flex flex-col overflow-hidden p-2 md:p-4 pt-2 border rounded-lg bg-card">
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-lg font-semibold">Preview</h2>
+        <h2 className="text-sm md:text-lg font-semibold">Preview</h2>
         <Button variant="outline" size="icon" onClick={handleCopy}>
           {isCopied ? (
             <Check className="h-4 w-4" />

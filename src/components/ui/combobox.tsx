@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronDown, ChevronsDown, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -24,13 +24,17 @@ interface ComboboxProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  className?: string;
+  width?: string;
 }
 
 export const Combobox = ({ 
   options = [], 
   value, 
   onChange, 
-  placeholder = "Select option..." 
+  placeholder = "Select option...",
+  className,
+  width = "w-[200px]",
 }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false);
 
@@ -41,15 +45,15 @@ export const Combobox = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className={cn(width, "justify-between px-3", className)}
         >
           {value
             ? options.find((option) => option.value === value)?.label
             : placeholder}
-          <ChevronsUpDown className="opacity-50" />
+          <ChevronDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className={cn("w-[200px] p-0", width)}>
         <Command>
           <CommandInput placeholder={`Search ${placeholder.toLowerCase()}...`} className="h-9" />
           <CommandList>
