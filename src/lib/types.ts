@@ -30,3 +30,8 @@ export type SelectedFields = {
   [K in keyof Font]: boolean;
 };
 
+export interface GoogleFontsResponse {
+  kind: string;
+  items: Font[];
+}
+
