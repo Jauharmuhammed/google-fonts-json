@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { siteConfig } from "@/config/site";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,8 +17,17 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Google Fonts JSON",
-  description: "Download Google Fonts JSON with advanced filters and sorting",
+  title: siteConfig.title,
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION_KEY,
+  },
 };
 
 export default function RootLayout({
