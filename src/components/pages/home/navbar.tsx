@@ -28,13 +28,13 @@ function Navbar({ data }: Props) {
   return (
     <Card>
       <CardContent className="flex items-center justify-between p-2 rounded">
-        <Title className="ms-2" />
+        <Title className="ms-2 select-none" />
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-0.5">
             <Link target="_blank" href={process.env.NEXT_PUBLIC_GITHUB_URL!}>
               <Button
                 variant={"ghost"}
-                size={"icon"}
+                size={"icon-sm"}
                 className="focus-visible:ring-0"
               >
                 <GithubIcon className="h-4 w-4" />
@@ -42,8 +42,12 @@ function Navbar({ data }: Props) {
             </Link>
             <ThemeToggle />
           </div>
-          <Button onClick={handleDownload} className="flex items-center gap-2">
-            {isDownloading ? <Loader /> : <Download className="h-4 w-4" />}
+          <Button
+            onClick={handleDownload}
+            className="flex items-center gap-2"
+            size={"sm"}
+          >
+            {isDownloading ? <Loader /> : <Download className="!size-3.5" />}
             Download
           </Button>
         </div>

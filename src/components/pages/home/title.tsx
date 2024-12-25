@@ -12,7 +12,7 @@ function Title({ className }: Props) {
         {/* <p className="text-[36px] uppercase text-center font-normal">{`{`}</p> */}
         <p className="text-[10px] uppercase text-center font-bold  border-dashed border-zinc-800 py-0.5">
           <span className="text-[10px]">Google</span>
-          <br /> <span className="tracking-widest">Fonts</span>
+          <br /> <span className="tracking-[0.125em]">Fonts</span>
         </p>
         <p className="text-[22px] uppercase text-center font-bold border-dotted py-0.5 ms-1">
           JSON
