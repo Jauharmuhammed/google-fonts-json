@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Google Fonts JSON Viewer
+
+A modern web application for viewing and exploring the Google Fonts JSON file in a clean, organized interface.
+
+![Google Fonts JSON Viewer Screenshot](assets/screenshots/preview.jpeg)
+
+## Description
+
+Google Fonts JSON Viewer is a specialized tool built with Next.js that provides an intuitive interface for browsing and analyzing the Google Fonts JSON data structure. It helps developers and designers explore font families, variants, and related metadata in a user-friendly format.
+
+### Current Features
+
+- 🔍 Interactive JSON preview with expandable/collapsible sections
+- 🎨 Dark/Light theme support
+- ⚡ Fast and responsive interface
+- 🔤 Alphabetical sorting
+- 📥 Download functionality
+- 🎯 Category and subset filtering
+- 🔄 Reset view options
+
+### Planned Features
+
+1. **Advanced Table View**
+
+   - Customizable columns
+   - Advanced filtering options
+   - Sort by multiple parameters
+
+2. **Batch Operations**
+
+   - Select multiple font families
+   - Bulk download selected items
+   - Compare font properties
+
+3. **Export Options**
+   - CSV format export
+   - YAML format export
+   - Custom JSON structure export
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or later
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/jauharmuhammed/google-fonts-json.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Next.js 14](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Shadcn/UI](https://ui.shadcn.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Issues
 
-## Deploy on Vercel
+Found a bug or have a feature request? Please file an issue:
+[Create Issue](https://github.com/jauharmuhammed/google-fonts-json/issues)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+
+## Acknowledgments
+
+- [Google Fonts](https://fonts.google.com/) for providing the font data
+- [Next.js](https://nextjs.org/) team for the amazing framework
+- All contributors who help improve this project
+
+## Contact
+
+Project Link: [https://github.com/jauharmuhammed/google-fonts-json](https://github.com/jauharmuhammed/google-fonts-json)
+
+---
+
+Made with ❤️ by [Your Name]
