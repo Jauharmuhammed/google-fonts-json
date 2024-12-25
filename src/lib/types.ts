@@ -21,9 +21,11 @@ export interface FilterOptions {
   search?: string
 }
 
+export type GoogleFontSort = 'alpha' | 'date' | 'popularity' | 'style' | 'trending';
+
 export interface SortOption {
-  field: keyof Font
-  direction: 'asc' | 'desc'
+  value: GoogleFontSort;
+  label: string;
 }
 
 export type SelectedFields = {

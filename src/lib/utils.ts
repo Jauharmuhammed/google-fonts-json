@@ -28,24 +28,9 @@ export function filterFonts(fonts: Font[], filters: FilterOptions): Font[] {
   });
 }
 
-export function sortFonts(fonts: Font[], sort: SortOption): Font[] {
-  return [...fonts].sort((a, b) => {
-    const aValue = a[sort.field];
-    const bValue = b[sort.field];
-
-    if (Array.isArray(aValue) && Array.isArray(bValue)) {
-      const comparison = aValue.join(",").localeCompare(bValue.join(","));
-      return sort.direction === "asc" ? comparison : -comparison;
-    }
-
-    if (typeof aValue === "string" && typeof bValue === "string") {
-      const comparison = aValue.localeCompare(bValue);
-      return sort.direction === "asc" ? comparison : -comparison;
-    }
-
-    return 0;
-  });
-}
+// export function sortFonts(fonts: Font[], sortOption: SortOption) {
+//   ...
+// }
 
 export function filterFields(
   fonts: Font[],

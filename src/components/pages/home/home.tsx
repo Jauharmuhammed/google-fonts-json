@@ -1,34 +1,35 @@
 "use client";
 
-import { useState } from "react";
-import { FilterOptions, Font, SelectedFields, SortOption } from "@/lib/types";
-import { filterFonts, sortFonts, filterFields } from "@/lib/utils";
+import { useState, useTransition } from "react";
+import { FilterOptions, Font, SelectedFields, GoogleFontSort } from "@/lib/types";
+import { filterFonts, filterFields } from "@/lib/utils";
 import { FilterSection } from "./filter-section";
 import { SortSection } from "./sort-section";
 import { FieldSelector } from "./field-selector";
 import Preview from "./preview";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface HomeProps {
   initialFonts: Font[];
   categories: string[];
   subsets: string[];
   variants: string[];
+  initialSort: GoogleFontSort;
 }
 
 export default function Home({ 
   initialFonts, 
   categories, 
   subsets, 
-  variants 
+  variants,
+  initialSort 
 }: HomeProps) {
-  const [fonts] = useState<Font[]>(initialFonts);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
   const [filters, setFilters] = useState<FilterOptions>({});
-  const [sortOption, setSortOption] = useState<SortOption>({
-    field: "family",
-    direction: "asc",
-  });
   const [selectedFields, setSelectedFields] = useState<SelectedFields>({
     family: true,
     category: true,
@@ -40,7 +41,15 @@ export default function Home({
     kind: true,
   });
 
-  const filteredFonts = sortFonts(filterFonts(fonts, filters), sortOption);
+  const handleSortChange = (sort: GoogleFontSort) => {
+    startTransition(() => {
+      const params = new URLSearchParams(searchParams);
+      params.set('sort', sort);
+      router.push(`/?${params.toString()}`);
+    });
+  };
+
+  const filteredFonts = filterFonts(initialFonts, filters);
   const finalData = filterFields(filteredFonts, selectedFields);
 
   return (
@@ -56,7 +65,11 @@ export default function Home({
           onFilterChange={setFilters}
         />
         <div className="flex items-center gap-2">
-          <SortSection sortOption={sortOption} onSortChange={setSortOption} />
+          <SortSection 
+            value={searchParams.get('sort') as GoogleFontSort || initialSort} 
+            onChange={handleSortChange}
+            isLoading={isPending} 
+          />
           <FieldSelector
             selectedFields={selectedFields}
             onFieldChange={(field) =>
@@ -70,7 +83,7 @@ export default function Home({
       </div>
 
       <Preview data={finalData} />
-      <Footer totalData={fonts} data={finalData} filteredData={filteredFonts} />
+      <Footer totalData={initialFonts} data={finalData} filteredData={filteredFonts} />
     </div>
   );
 }
