@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
@@ -8,7 +10,7 @@ type Props = {
   data: any;
 };
 
-function preview({ data }: Props) {
+function Preview({ data }: Props) {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
@@ -38,4 +40,4 @@ function preview({ data }: Props) {
   );
 }
 
-export default preview;
+export default Preview;

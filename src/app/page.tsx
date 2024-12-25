@@ -1,10 +1,6 @@
-import Home from "@/components/pages/home";
 import React from "react";
+import Home from "@/components/pages/home";
 
-type Props = {};
-
-function HomePage({}: Props) {
+export default function HomePage() {
   return <Home />;
 }
-
-export default HomePage;

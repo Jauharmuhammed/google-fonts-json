@@ -13,7 +13,7 @@ type Props = {
   data: any;
 };
 
-function navbar({ data }: Props) {
+function Navbar({ data }: Props) {
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownload = async () => {
@@ -52,4 +52,4 @@ function navbar({ data }: Props) {
   );
 }
 
-export default navbar;
+export default Navbar;

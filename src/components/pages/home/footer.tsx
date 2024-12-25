@@ -1,13 +1,14 @@
+import { Font } from "@/lib/types";
 import { formatFileSize } from "@/lib/utils";
 import React from "react";
 
 type Props = {
-  totalData: any;
-  data: any;
-  filteredData: any;
+  totalData: Font[];
+  data: Partial<Font>[];
+  filteredData: Font[];
 };
 
-function footer({ totalData, data, filteredData }: Props) {
+function Footer({ totalData, data, filteredData }: Props) {
   // Calculate JSON size with proper formatting
   const jsonString = JSON.stringify(data, null, 2); // Use same formatting as download
   const byteSize = new Blob([jsonString]).size;
@@ -26,4 +27,4 @@ function footer({ totalData, data, filteredData }: Props) {
   );
 }
 
-export default footer;
+export default Footer;
