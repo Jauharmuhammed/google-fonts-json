@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Copy } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   FilterOptions,
@@ -26,6 +28,7 @@ import { FieldSelector } from "./field-selector";
 import JsonPreview from "./json-preview";
 import { Card, CardContent } from "@/components/ui/card";
 import Title from "./title";
+import Preview from "./preview";
 
 export default function Home() {
   const [fonts, setFonts] = useState<Font[]>([]);
@@ -133,10 +136,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col overflow-hidden p-4 border rounded-lg bg-card">
-        <h2 className="text-lg font-semibold mb-4">Preview</h2>
-        <JsonPreview data={finalData} />
-      </div>
+      <Preview data={finalData} />
 
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
