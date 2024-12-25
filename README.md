@@ -87,11 +87,6 @@ Google Fonts JSON Viewer is a specialized tool that provides an intuitive interf
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18.x or later
-- npm or yarn package manager
-
 ### Installation
 
 1. Clone the repository:
