@@ -26,7 +26,7 @@ export interface SortOption {
   direction: 'asc' | 'desc'
 }
 
-export interface SelectedFields {
-  [key in keyof Font]: boolean
-}
+export type SelectedFields = {
+  [K in keyof Font]: boolean;
+};
 

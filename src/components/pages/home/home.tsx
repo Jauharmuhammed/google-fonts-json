@@ -25,6 +25,7 @@ import { SortSection } from "./sort-section";
 import { FieldSelector } from "./field-selector";
 import JsonPreview from "./json-preview";
 import { Card, CardContent } from "@/components/ui/card";
+import Title from "./title";
 
 export default function Home() {
   const [fonts, setFonts] = useState<Font[]>([]);
@@ -97,9 +98,7 @@ export default function Home() {
     <div className="container h-svh flex flex-col overflow-y-clip mx-auto pb-4 pt-2 space-y-4">
       <Card>
         <CardContent className="flex items-center justify-between p-2 rounded">
-          <h1 className="text-xl font-bold ms-2 font-mono">
-            Google Fonts JSON
-          </h1>
+          <Title className="ms-2" />
           <div className="flex items-center gap-4">
             <Button
               onClick={() => downloadJson(finalData, "google-fonts.json")}

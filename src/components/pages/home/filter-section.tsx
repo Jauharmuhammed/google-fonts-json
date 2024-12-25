@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { FilterOptions } from "@/lib/types";
 import { Combobox } from "../../ui/combobox";
+import { toSentenceCase } from "@/lib/utils";
 
 interface FilterSectionProps {
   categories: string[];
@@ -30,7 +31,7 @@ export function FilterSection({
   // Transform subsets array into the required format
   const subsetOptions = subsets.map((subset) => ({
     value: subset,
-    label: subset,
+    label: toSentenceCase(subset),
   }));
 
   return (
@@ -56,8 +57,8 @@ export function FilterSection({
         <SelectContent>
           <SelectItem value="all">All Categories</SelectItem>
           {categories.map((category) => (
-            <SelectItem key={category} value={category} className="capitalize">
-              {category}
+            <SelectItem key={category} value={category}>
+              {toSentenceCase(category)} 
             </SelectItem>
           ))}
         </SelectContent>
@@ -89,7 +90,7 @@ export function FilterSection({
           <SelectItem value="all">All Variants</SelectItem>
           {variants.map((variant) => (
             <SelectItem key={variant} value={variant}>
-              {variant}
+              {toSentenceCase(variant)}
             </SelectItem>
           ))}
         </SelectContent>

@@ -77,13 +77,23 @@ export function downloadJson(data: any, filename: string) {
 }
 
 export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 KB';
-  
+  if (bytes === 0) return "0 KB";
+
   const kb = bytes / 1000;
   if (kb < 1024) {
     return `${kb.toFixed(1)} KB`;
   }
-  
+
   const mb = kb / 1000;
   return `${mb.toFixed(1)} MB`;
+}
+
+export function toSentenceCase(str: string) {
+  return str
+    .replace(/_/g, " ")
+    .replace(/([A-Z])/g, " $1")
+    .toLowerCase()
+    .replace(/^\w/, (c) => c.toUpperCase())
+    .replace(/\s+/g, " ")
+    .trim();
 }

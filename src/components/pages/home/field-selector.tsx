@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ListIcon } from "lucide-react";
+import { ChevronsUpDown, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SelectedFields } from "@/lib/types";
+import { toSentenceCase } from "@/lib/utils";
 
 interface FieldSelectorProps {
   selectedFields: SelectedFields;
@@ -25,8 +26,10 @@ export function FieldSelector({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size={"icon"}>
-          <ListIcon className="h-4 w-4" />
+        <Button variant="outline">
+          <Settings2 className="size-4" />
+          View
+          <ChevronsUpDown className="ml-auto size-4 shrink-0 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
@@ -39,7 +42,7 @@ export function FieldSelector({
             onSelect={(e) => e.preventDefault()}
             onCheckedChange={() => onFieldChange(field as keyof SelectedFields)}
           >
-            {field}
+            {toSentenceCase(field)}
           </DropdownMenuCheckboxItem>
         ))}
       </DropdownMenuContent>
