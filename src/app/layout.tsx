@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION_KEY,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_KEY,
   },
 };
 
