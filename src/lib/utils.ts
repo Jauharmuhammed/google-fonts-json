@@ -62,7 +62,7 @@ export function filterFields(
   });
 }
 
-export function downloadJson(data: any, filename: string) {
+export async function downloadJson(data: any, filename: string) {
   const blob = new Blob([JSON.stringify(data, null, 2)], {
     type: "application/json",
   });
