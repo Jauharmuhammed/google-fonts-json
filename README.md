@@ -47,7 +47,7 @@
 ## About The Project
 
 <p align="center">
-  <img src="assets/screenshot.jpeg" alt="Project Screenshot" width="100%">
+  <img src="assets/screenshot.jpeg" alt="Project Screenshot" width="70%">
 </p>
 
 Google Fonts JSON Viewer is a specialized tool that provides an intuitive interface for browsing and analyzing the Google Fonts JSON data structure. It helps developers and designers explore and download font families, variants, and related metadata in a user-friendly format.
