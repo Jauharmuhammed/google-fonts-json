@@ -113,6 +113,45 @@ yarn dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+## Deploy to Cloudflare Workers
+
+This project uses [vinext](https://vinext.dev/) to deploy Next.js to Cloudflare Workers. Node.js 22 or newer is required.
+
+1. Authenticate Wrangler:
+
+```bash
+npx wrangler login
+```
+
+2. Add the private Google Fonts API key:
+
+```bash
+npx wrangler secret put GOOGLE_FONTS_API_KEY
+```
+
+3. Configure these public build variables in Cloudflare Workers Builds:
+
+```text
+NEXT_PUBLIC_SITE_URL
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_KEY
+NEXT_PUBLIC_GITHUB_URL
+```
+
+4. Build and preview the Worker locally:
+
+```bash
+npm run build:vinext
+npm run start:vinext
+```
+
+5. Deploy:
+
+```bash
+npm run deploy:vinext
+```
+
+For Workers Builds, use `npm run build:vinext` as the build command and `npm run deploy:vinext` as the deploy command. Add `GOOGLE_FONTS_API_KEY` as a secret and the `NEXT_PUBLIC_*` values as build variables in the Cloudflare dashboard.
+
 ## Technologies Used
 
 - [Next.js 14](https://nextjs.org/)

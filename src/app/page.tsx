@@ -5,11 +5,12 @@ import { GoogleFontSort } from "@/lib/types";
 export const dynamic = "force-dynamic";
 
 interface PageProps {
-  searchParams: { sort?: GoogleFontSort };
+  searchParams: Promise<{ sort?: GoogleFontSort }>;
 }
 
 export default async function HomePage({ searchParams }: PageProps) {
-  const fonts = await fetchGoogleFonts(searchParams.sort);
+  const { sort } = await searchParams;
+  const fonts = await fetchGoogleFonts(sort);
 
   // Derive static values on the server
   const categories = Array.from(
@@ -28,7 +29,7 @@ export default async function HomePage({ searchParams }: PageProps) {
       categories={categories}
       subsets={subsets}
       variants={variants}
-      initialSort={searchParams.sort || "alpha"}
+      initialSort={sort || "alpha"}
     />
   );
 }
